@@ -1,0 +1,209 @@
+% Metódy inžinierskej práce
+
+\documentclass[12pt,twoside,slovak,a4paper]{article}
+
+\usepackage[slovak]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[IL2]{fontenc} % lepšia sadzba písmena Ľ než v T1
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{url} % príkaz \url na formátovanie URL
+\usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  top=25mm, 
+  right=15mm, 
+  bottom=25mm, 
+  left=15mm
+}
+\usepackage{cite}
+%\usepackage{times}
+
+\pagestyle{headings}
+
+\title{Modelovanie webových stránok.\\Vytvaranie Frontend.\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2021/22, vedenie: Ing. Fedor Lehocki, PhD.}} % meno a priezvisko vyučujúceho na cvičeniach
+
+\author{Yehor Lykhachov\\[2pt]
+	{\small Slovenská technická univerzita v Bratislave}\\
+	{\small Fakulta informatiky a informačných technológií}\\
+	{\small \texttt{xlykhachov@is.stuba.sk}}
+	}
+
+\date{\small 6. november 2021} % upravte
+
+
+
+\begin{document}
+
+\maketitle
+
+
+
+
+
+\section{Úvod}
+
+V tomto článku som opísal základné princípy fungovania webových stránok z klientskej strany. Stanovil som hlavný cieľ svojho článku: popis všetkých procesov
+vytvárania, ako aj pracovných procesov front-end. Chcem ukázať, aká
+dôležitá je táto oblasť vývoja, rozvoj na strane klienta pri
+vytváraní webových stránok. Samozrejme, zdôraznil som časť svojho článku, ktorá
+popisuje znalosti a schopnosti, ktoré musí front-end vývojár mať.\\
+\\
+Článok je rozdelený do dvoch častí(part 1 - 7/10, part 2 - 3/10), z
+ktorých jedna berie do úvahy technickú zložku a druhá popísuje potrebné
+nástroje, znalosti a zručnosti, ktoré by dobrý front-end špecialista mal mať.
+Technickými aspektmi sa podrobne zaoberá Part~\ref{Part 2}.
+Znalosti a techniky, ktoré potrebuje špecialista na frontend, sú zahrnuté v Part~\ref{Part 3}. 
+Záverečné poznámky prináša časť~\ref{zaver}.
+
+
+
+\section{Technická časť} \label{Part 2}
+\subsection{Z čoho sa skladá website?}
+Web-site je súbor verejne prístupných, vzájomne prepojených webových stránok, ktoré používajú jeden názov domény. Webové stránky môže vytvárať a spravovať jednotlivec, skupina, podnik alebo organizácia na rôzne účely. Všetky verejne prístupné webové stránky spolu tvoria World Wide Web.\label{sub2.1}\cite{zdroj_2}\\
+\\
+Zjednodušene povedané, webová stránka je adresa umiestnená na internete, ktorá obsahuje určité informácie (text, video, fotografie, dokumenty, hudbu atď.).\\
+\\
+Web-site pozostáva z:\\
+\\
+- Názov domény (doména) - adresa.\\
+- Server (hosting) - počítače/servery pripojené k World Wide Webu, na ktorých sú umiestnené súbory s webovými zdrojmi.\\
+- Súbory - zvyčajne CMS (systém správy obsahu), pomocou ktorého je možné pohodlne vytvárať a spravovať webové stránky. Alebo to môže byť len jedna alebo niekoľko statických html stránok (s obrázkami, css, js), ktoré je potrebné upravovať ručne.\\
+- Obsah webových stránok: obrázky, videá, text a iné súbory.\\
+\subsection{Čo je frontend?} \label{sub2.2}
+Hlavná a možno najdôležitejšia otázka tohto článku. Mnohí ľudia ešte stále úplne nerozumejú tomu, o čom je povolanie frontendového vývojára. Čo presne tento človek robí, čo musí vedieť, aká je jeho úloha a mnoho ďalších otázok, na ktoré veľa ľudí nepozná odpoveď.
+V tomto článku sa pokúsim vysvetliť, aké znalosti a technické zručnosti sú potrebné pre človeka, ktorý sa rozhodol stať frontendovým vývojárom.\\
+\\
+Zjednodušene povedané, frontend je čokoľvek, čo môže prehliadač čítať, zobrazovať a/alebo spúšťať.  To znamená, že ide o HTML, CSS a JavaScript.\\
+\\
+Jazyk HTML (HyperText Markup Language) hovorí prehliadaču, čo je obsahom stránky, napr. header, table, article, image.\\
+\\
+CSS (Cascading Style Sheets) hovorí prehliadaču, ako má zobrazovať prvky na stránke, napr. "druhý odsek je odsadený o 10 pixelov" alebo "text v tomto bloku by mal byť biely a písaný písmom Impact".\\
+\\
+JavaScript pomocou odľahčeného programovacieho jazyka určuje prehliadaču, ako má reagovať na určité interakcie.Väčšina stránok v skutočnosti nepoužíva veľa JavaScriptu, ale ak napríklad na niečo kliknete a zmení sa to bez opätovného načítania stránky alebo prechodu na inú stránku, znamená to, že bol niekde použitý JavaScript.\\
+\\
+To všetko je úzko prepojené s rôznymi druhmi rámcov, knižníc a množstvom ďalších rovnako dôležitých vecí pri vývoji webových stránok. V nasledujúcom článku sa venujeme každej z uvedených hlavných zložiek samostatne.
+
+\subsection{HTML} \label{sub2.3}
+HTML stands for Hypertext Markup Language which is the most fundamental building
+block of the World Wide Web (WWW). It was originally designed to be used as a markup
+language for scientific documents, but its overall design has enabled it to be adopted by
+other fields over the years (WHATWG, 2020).\cite{zdroj_1}\\
+\\
+Jazyk HTML používa na zobrazenie textu, obrázkov a iného obsahu vo webovom prehliadači značky. Značky HTML obsahujú špeciálne "elementy", ako napríklad <head>, <title>, <body>, <header>, <footer>, <article>, <section>, <p>, <div>, <span>, <img>, <aside>, <audio>, <nav>, <video> a mnoho ďalších.\\
+\\
+Element HTML je oddelený od zvyšku textu v dokumente pomocou "značiek", ktoré pozostávajú z názvu elementu obklopeného znakmi < a >. Názov prvku v rámci značky nerozlišuje veľkosť písmen. To znamená, že sa môže písať veľkými alebo malými písmenami, prípadne zmiešane. Napríklad značka <title> môže byť zapísaná ako <Title>, <TITLE> alebo iným spôsobom.\\
+\\
+Although the syntax of HTML provides an intuitive way to inspect the structure and
+hierarchy of a web page’s elements, the way it is designed to be used dictates that every
+single HTML file is served as an individual web page (WHATWG, 2020). For example,
+the display language of a website in most cases is consistent throughout all pages, but
+since one HTML file represents one page, the value of `lang` property inside `<html>`
+tags will be repeated in multiple HTML files.\cite{zdroj_1}
+\\
+\subsection{CSS} \label{sub2.4}
+Cascading Style Sheets (CSS) was first introduced in 1996. At that moment, the current
+version of HTML was HTML2. HTML is responsible for the layout, the appearance, and
+the information input of the page. CSS is responsible for describing the presentation of
+a document written in a markup language like HTML. It is a fundamental technology of
+the World Wide Web, alongside HTML and JavaScript (CSS WG, 2020).\cite{zdroj_1}\\
+CSS sa používa na definovanie štýlov (pravidiel) pre dokumenty - vrátane dizajnu a variantov rozloženia pre rôzne zariadenia a veľkosti obrazovky. Tento spôsob formátovania má niekoľko výhod:\\
+\\
+--značky nie sú duplikované;\\
+--dokument sa ľahšie udržiava;\\
+--vzhľad celého webu sa dá meniť centrálne, namiesto toho, aby sa upravovalo formátovanie jednotlivých stránok.\\
+\\
+CSS was created to provide a tool for web designers to manage the style of HTML
+elements. Moreover, it was not intended to manage the visual look of webpages; it was
+only designated to access and control the properties of particular elements that existed
+in the HTML file. As the time CSS was created, most of the websites looked plain and
+architects could not anticipate the richness and complexity of the designs of the current
+state of webpages nowadays. The reason for that was clearly stated by one of the
+creators of CSS:\\
+“Variables, constants, conditionals, expressions over variables, etc. are features that
+used most by programmers, however, they do not exist in CSS. These things give a lot
+of power to developers as they know how to customize and utilize these features to their
+best. However, for inexperienced users, they will feel more pressure, more likely, feel
+scared and stop using CSS” (Bos, n.d.).\cite{zdroj_1}
+\subsection{JavaScript} \label{sub2.5}
+JavaScript je programovací jazyk, ktorý umožňuje vytvárať dynamicky aktualizovaný obsah, spravovať multimédiá, animovať obrázky a vlastne robiť čokoľvek iné. Dobre, nie všetko, ale aj tak je úžasné, čo všetko môžete dosiahnuť pomocou niekoľkých riadkov kódu JavaScript.\cite{zdroj_3}\\
+\\
+Jadro jazyka JavaScript pozostáva z niekoľkých spoločných funkcií, ktoré umožňujú:\\
+\\
+- Ukladanie údajov do premenných. \\
+- Operácie s textovými fragmentmi.\\
+- Spustite kód podľa konkrétnych udalostí, ktoré sa vyskytnú na webovej stránke.\\
+- A ešte oveľa viac!\\
+\\
+Kód JavaScriptu sa spustí pomocou mechanizmu JavaScriptu prehliadača po spracovaní kódu HTML a CSS a vytvorení webovej stránky. Tým sa zabezpečí, že štruktúra a štýl stránky sú v čase spustenia JavaScriptu už vytvorené.\\
+\\
+To je dobré, pretože JavaScript sa často používa na dynamickú zmenu HTML a CSS s cieľom aktualizovať používateľské rozhranie prostredníctvom rozhrania API objektového modelu dokumentu. Ak by sa JavaScript spustil pred načítaním HTML a CSS, viedlo by to k chybám.  
+\subsection{Frameworky} \label{sub2.6}
+V oblasti frontendov existuje mnoho frameworkov a knižníc, ktoré musí používať každý frontendový vývojár. V grafe sú znázornené najobľúbenejšie frameworky posledných rokov.\cite{zdroj_2}\\
+\\
+\includegraphics[width = 400pt]{diagram.pdf}\\
+\\
+\begin{tabular}{|c|c|}
+    Top 7 frameworks & in 2021 \\
+    React & 74.2\% \\
+    Angular & 33.4\% \\
+    Vue.js & 29.9\% \\
+    Svelte & 11.8\% \\
+    Ember.js & 6.5\% \\
+    Preact & 5.6\% \\
+    Blackbone.js & 4\% \\
+    
+\end{tabular}
+
+\section{Časť o frontendovom vývojárovi} \label{Part 3}
+Frontendový vývojár nevytvára len rozvrhnutie. Má dobré znalosti JavaScriptu, rozumie frameworkom a knižniciam (a niektoré z nich aktívne používa), rozumie tomu, čo je "pod kapotou" na strane servera. Nebojí sa preprocesorov a builderov LESS, SASS, GRUNT, GULP, vie pracovať s DOM, API, SVG-objektmi, AJAXom a CORS, vie robiť SQL dotazy a hrabať sa v dátach. Výsledkom je zmes zručností, ktoré sú doplnené o pochopenie princípov dizajnu UI/UX, adaptívneho a responzívneho rozvrhnutia, zručností v oblasti vývoja naprieč prehliadačmi a platformami a niekedy aj mobilných zariadení.\\
+\\
+Front-end developer musí tiež vedieť pracovať s riadením verzií (Git, GitHub, CVS atď.), používať grafické editory a "hrať sa" so šablónami z rôznych CMS.\\
+\\
+Taktiež je veľmi žiaduce vedieť anglicky, aby ste nemuseli špecifikáciu prekladať v Google Translator, vedieť pracovať v tíme, niekedy viacjazyčne, rozumieť webovým fontom a rozumieť testerom a procesu testovania.\\
+\\
+Ktoré technológie by mal vývojár front-endu poznať:
+\\
+- HTML a CSS
+\\
+- Preprocesory CSS (Sass, Less, Stylus atď.)
+\\
+- JavaScript
+\\
+- Populárne frameworky a knižnice: jQuery,Angular.JS,React.JS, Backbone.js atď.
+\\
+- OOCSS / BEM / SMACSS
+\\
+- SVG
+\\
+- DOM
+\\
+- ROZHRANIE HTML5 API
+\\
+- ECMAScript 6
+\\
+- Populárne CMS (WordPress, Drupal, Joomla atď.)
+\\
+- Rozumieť princípom tvorby backendu a rozumieť serverovým technológiám (Node.js, PHP, Ruby, .NET atď.)
+\\
+- Nástroje na ladenie (Chrome Dev Tools, Firebug atď.)
+\\
+- Transpilátory JavaScript (Babel)
+\\
+- Nástroje na správu verzií (Git, GitHub, CVS atď.)
+\\
+- Databázy a dotazovacie jazyky (SQL, MySql, NoSQL, MongoDB atď.)
+\\
+- Grafické editory (Photoshop, Illustrator atď.)
+
+\paragraph{Historické súvislosti.}
+História informatiky je pomerne široká téma a veľkú časť tejto histórie zaberá aj frontend. Nie je však možné povedať všetko v skratke. Najprv tu bola tvrdá konkurencia prehliadačov s chaotickými inováciami, potom pokusy o štandardizáciu, ktoré komunita odmietla (XHTML) alebo zlyhali kvôli prílišným ambíciám (ECMAScript 4), potom stagnácia a potom produktívna práca v spolupráci s komunitou. HTML a JavaScript sa stali živými štandardmi, ktoré sú každoročne aktualizované a podporované všetkými prehliadačmi.
+\paragraph{Technológia a ľudia.}
+Frontend je v súčasnosti jednoznačne jednou z najobľúbenejších a najvyhľadávanejších oblastí IT. Koniec koncov, internet dnes používa každý, teda aj webové stránky. Webová stránka nemôže existovať bez frontendu. Niektorí ľudia si možno neuvedomujú, aký dôležitý je dnes frontend. V každom prípade má však frontend obrovský vplyv na životy ľudí.
+
+\section{Záver} \label{zaver}
+V tomto článku som opísal základné komponenty a princípy vytvárania frontend, ktoré potrebuje každý frontendový vývojár. V tomto článku som sa venoval tomu, z čoho sa skladá webová stránka, čo sú HTML, CSS a JavaScript a aké sú najpopulárnejšie frameworky. A samozrejme som odpovedal na hlavnú otázku článku - čo je to frontend.
+\bibliography{literatura}
+\bibliographystyle{plain}
+\end{document}
